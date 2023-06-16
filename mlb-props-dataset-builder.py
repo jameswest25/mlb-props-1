@@ -17,7 +17,7 @@ import mysql.connector
 import meteostat
 
 Teams_and_IDs = pd.read_csv("Teams_and_IDs.csv")
-Player_Positions = pd.read_csv("MLB_Player_Positions.csv")
+Player_Positions = pd.read_csv("Lineup_MLB_Player_Positions.csv")
 Park_Data = pd.read_csv("mlb_parks.csv")
 
 All_Teams_Data = []
@@ -76,8 +76,8 @@ def celsius_to_fahrenheit(celsius):
 yesterday = (datetime.today() - timedelta(days = 1)).strftime("%Y-%m-%d")
 day_before_yesterday = (datetime.today() - timedelta(days = 2)).strftime("%Y-%m-%d")
 
-Schedule = statsapi.schedule(start_date = day_before_yesterday, end_date = yesterday)
-# Schedule = statsapi.schedule(start_date = "2023-04-01", end_date = yesterday)
+# Schedule = statsapi.schedule(start_date = day_before_yesterday, end_date = yesterday)
+Schedule = statsapi.schedule(start_date = "2023-04-01", end_date = yesterday)
 Schedule_DataFrame = pd.json_normalize(Schedule)
   
 game_id_list = list(Schedule_DataFrame["game_id"].drop_duplicates())
